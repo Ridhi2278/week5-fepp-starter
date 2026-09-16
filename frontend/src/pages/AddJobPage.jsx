@@ -15,6 +15,7 @@ const AddJobPage = () => {
 
   const submitForm = async (e) => {
     e.preventDefault();
+  
 
     const newJob = {
       title,

@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "test": "jest --verbose --runInBand",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --verbose --runInBand",
     "data:import": "node seeder",
     "data:destroy": "node seeder -d"
   },

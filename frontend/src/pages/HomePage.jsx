@@ -8,6 +8,7 @@ const Home = () => {
     const fetchJobs = async () => {
       try {
         const response = await fetch("/api/jobs");
+<<<<<<< HEAD
 
         if (!response.ok) {
           throw new Error("Failed to fetch jobs");
@@ -24,6 +25,16 @@ const Home = () => {
     fetchJobs();
   }, []);
 
+=======
+        const data = await response.json();
+        setJobs(data);
+      } catch (error) {
+        console.error("Error fetching jobs:", error);
+      }
+    };
+    fetchJobs();
+  }, []);
+>>>>>>> 1e08d09 ([iter1]compeleted)
   return (
     <div className="home">
       <div className="job-list">
@@ -38,4 +49,10 @@ const Home = () => {
   );
 };
 
+<<<<<<< HEAD
 export default Home;
+=======
+export default Home;
+
+
+>>>>>>> 1e08d09 ([iter1]compeleted)

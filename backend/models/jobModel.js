@@ -26,3 +26,4 @@ jobSchema.set("toJSON", {
 const Job = mongoose.model("Job", jobSchema);
 
 module.exports = Job;
+

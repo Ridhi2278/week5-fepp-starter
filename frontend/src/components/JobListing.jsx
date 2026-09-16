@@ -14,3 +14,4 @@ const JobListing = ({ id, title, type, description, company }) => {
 };
 
 export default JobListing;
+

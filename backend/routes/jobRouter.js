@@ -26,3 +26,4 @@ router.get("/location/:location", getJobsByLocation);
 router.get('/count/type/:type', countJobsByType);
 
 module.exports = router;
+

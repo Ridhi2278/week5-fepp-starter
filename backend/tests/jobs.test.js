@@ -130,3 +130,4 @@ describe("GET /api/unknown", () => {
     expect(response.body.error).toContain("unknown endpoint");
   });
 });
+

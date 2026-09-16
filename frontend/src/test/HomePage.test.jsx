@@ -333,3 +333,4 @@ describe('HomePage - Iteration 2: Fetch Jobs from Backend', () => {
     expect(container).toBeInTheDocument();
   });
 });
+

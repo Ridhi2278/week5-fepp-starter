@@ -247,3 +247,4 @@ describe('JobPage - Iteration 4 Tests', () => {
     expect(screen.getByRole('button', { name: /delete job/i })).toBeInTheDocument();
   });
 });
+

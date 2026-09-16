@@ -1,37 +1,37 @@
-name: Iteration 2 - Frontend Tests
+name: Iteration 3 - Frontend Tests
 
 on:
   push:
     branches: [ main, master, develop ]
 
 jobs:
-  detect-iteration2:
+  detect-iteration3:
     runs-on: ubuntu-latest
     outputs:
-      is-iter2: ${{ steps.detect.outputs.is-iter2 }}
+      is-iter3: ${{ steps.detect.outputs.is-iter3 }}
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
       with:
         fetch-depth: 2
 
-    - name: Detect iteration 2 from commit message
+    - name: Detect iteration 3 from commit message
       id: detect
       run: |
         COMMIT_MSG=$(git log -1 --pretty=%B)
         echo "Commit message: $COMMIT_MSG"
         
-        if echo "$COMMIT_MSG" | grep -qiE '\[iter2\]|\[iteration-2\]|\[iteration 2\]'; then
-          echo "is-iter2=true" >> $GITHUB_OUTPUT
-          echo "✅ Detected Iteration 2 commit"
+        if echo "$COMMIT_MSG" | grep -qiE '\[iter3\]|\[iteration-3\]|\[iteration 3\]'; then
+          echo "is-iter3=true" >> $GITHUB_OUTPUT
+          echo "✅ Detected Iteration 3 commit"
         else
-          echo "is-iter2=false" >> $GITHUB_OUTPUT
-          echo "ℹ️  No Iteration 2 tag detected in commit message"
+          echo "is-iter3=false" >> $GITHUB_OUTPUT
+          echo "ℹ️  No Iteration 3 tag detected in commit message"
         fi
 
-  frontend-iteration2-test:
-    needs: detect-iteration2
-    if: needs.detect-iteration2.outputs.is-iter2 == 'true'
+  frontend-iteration3-test:
+    needs: detect-iteration3
+    if: needs.detect-iteration3.outputs.is-iter3 == 'true'
     runs-on: ubuntu-latest
     
     steps:
@@ -49,29 +49,27 @@ jobs:
       working-directory: ./frontend
       run: npm ci --legacy-peer-deps
 
-    - name: Run Iteration 2 tests
+    - name: Run Iteration 3 tests
       working-directory: ./frontend
-      run: npm run test:run -- src/test/HomePage.test.jsx
+      run: npm run test:run -- src/test/AddJobPage.test.jsx
 
     - name: Print test summary
       if: always()
       run: |
-        echo "## Iteration 2: Frontend Tests" >> $GITHUB_STEP_SUMMARY
+        echo "## Iteration 3: Add Job Functionality Tests" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
         echo "✅ Dependencies installed" >> $GITHUB_STEP_SUMMARY
         echo "✅ Tests executed" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
-        echo "**Test Scope:** HomePage component fetch functionality" >> $GITHUB_STEP_SUMMARY
+        echo "**Test Scope:** AddJobPage component - POST to /api/jobs" >> $GITHUB_STEP_SUMMARY
         echo "**Framework:** Vitest + React Testing Library" >> $GITHUB_STEP_SUMMARY
-        echo "**Commit Pattern:** \`[iter2]\`, \`[iteration-2]\`, or \`[iteration 2]\`" >> $GITHUB_STEP_SUMMARY
-        echo "" >> $GITHUB_STEP_SUMMARY
-        echo "For detailed test documentation, see: [frontend/ITERATION2_TESTS.md](frontend/ITERATION2_TESTS.md)" >> $GITHUB_STEP_SUMMARY
+        echo "**Commit Pattern:** \`[iter3]\`, \`[iteration-3]\`, or \`[iteration 3]\`" >> $GITHUB_STEP_SUMMARY
 
     - name: Upload test results
       if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: iteration2-test-results
+        name: iteration3-test-results
         path: frontend/
 
     - name: Comment on PR with results
@@ -83,5 +81,6 @@ jobs:
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
-            body: '✅ Iteration 2 Frontend Tests Completed\n\nAll tests for HomePage fetch functionality have been executed. Commit message detected: `[iter2]`\n\nCheck the test results above.'
+            body: '✅ Iteration 3 Frontend Tests Completed\n\nAll tests for AddJobPage functionality have been executed. Commit message detected: `[iter3]`\n\nCheck the test results above.'
           })
+

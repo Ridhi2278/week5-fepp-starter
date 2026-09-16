@@ -16,6 +16,7 @@ const Home = () => {
         const data = await response.json();
         setJobs(data);
       } catch (error) {
+
         console.error("Error fetching jobs:", error);
       }
     };

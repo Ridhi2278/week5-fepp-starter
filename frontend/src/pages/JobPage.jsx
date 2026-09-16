@@ -6,6 +6,7 @@ const JobPage = () => {
   const [job, setJob] = useState(null);
   const navigate = useNavigate();
 
+  // 1. Data Fetching Logic (Yeh aapke code se hat gaya tha)
   useEffect(() => {
     const fetchJob = async () => {
       try {
@@ -20,9 +21,12 @@ const JobPage = () => {
     fetchJob();
   }, [id]);
 
-
+  // 2. Delete Logic (response.ok se ! hta diya hai)
   const deleteJob = async () => {
-    console.log(JobPage);
+    const response = await fetch(`/api/jobs/${id}`, {
+      method: "DELETE"
+    });
+    if (response.ok) navigate("/"); 
   };
 
   if (!job) {
@@ -49,4 +53,3 @@ const JobPage = () => {
 };
 
 export default JobPage;
-

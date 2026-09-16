@@ -1,4 +1,4 @@
-const books = [
+const jobs = [
   {
     title: "Software Engineer",
     type: "Full-time",
@@ -133,5 +133,5 @@ const books = [
   },
 ];
 
-module.exports = books;
+module.exports = jobs;
 
